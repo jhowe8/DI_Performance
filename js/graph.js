@@ -1,22 +1,15 @@
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 20, bottom: 50, left: 70},
-    width = 1060 - margin.left - margin.right,
+    width = 900 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
 // Set the ranges
 var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
-
-// Define the div for the tooltip
-const div = d3
-    .select('body')
-    .append('div')
-    .attr('class', 'tooltip')
-    .style('opacity', 0);
-
     
 // Adds the svg canvas
-var svg = d3.select(".graph-card").append("svg")
+var svg = d3.select(".graph-card")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -31,6 +24,11 @@ d3.json("data/data2.json").then(function(data) {
         d.duration = +d.duration;
     });
 
+    var format = d3.timeFormat("%B %d %Y %I:%M:%S %p");
+    var tooltipdiv = d3.select("#tooltip-card").append("div") 
+                        .attr("class", "tooltip")       
+                        .style("opacity", 1);
+
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
     y.domain([0, d3.max(data, function(d) { return d.duration; })]);
@@ -42,21 +40,20 @@ d3.json("data/data2.json").then(function(data) {
         .attr("cx", function(d) { return x(d.date); })
         .attr("cy", function(d) { return y(d.duration); })
         .attr("r", 6)
-        .style("fill", "#69b3a2")
-        .attr("stroke", "black")
-        .on("mouseover", d => {
-            div.transition()
-                .duration(200)
-                .style('opacity', 0.9);
-            div
-                .html(d.date + '<br/>' + d.duration + ' seconds')
-                .style('left', d3.event.pageX + 'px')
-                .style('top', d3.event.pageY - 28 + 'px');
+        .attr("fill", "rgb(0,57,112)")
+        .attr("stroke", "rgb(0,57,112)")
+        .on("mouseover", function(d) {
+            tooltipdiv
+                .html('<b>Date:</b> ' + format(d.date) + '<br><br><b>Duration:</b> ' + d.duration + ' seconds')
+                .style('opacity', .9);
+            d3.select(this)
+                .attr("fill", "rgb(111,212,77)");
+        
         })
-        .on("mouseout", () => {
-            div.transition()
-                .duration(500)
-                .style('opacity', 0);
+        .on("mouseout", function(d) {
+            d3.select(this)
+                .attr("fill", "rgb(0,57,112)");
+            tooltipdiv.style('opacity', 0);
         });
 
     // Lines

@@ -1,17 +1,3 @@
-div.tooltip { 
-    position: absolute;     
-    text-align: center;     
-    width: 140px;          
-    height: 105px;         
-    padding: 2px;       
-    font: 15px sans-serif; 
-    color: green;   
-    background: #B9FFD8; 
-    border: 1px solid black;    
-    border-radius: 8px;     
-    pointer-events: none;     
-}
-
 .std-lato-font {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
@@ -69,30 +55,62 @@ div.tooltip {
     height: 40%;
 }
 
-.graph-card {
-    display: inline-block;
-    position: relative;
-    /*padding-bottom: 100%;*/
-    vertical-align: top;
-    overflow: hidden;
-    flex-grow: 1;
-    background: white;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 70%;
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /*background-color: rgb(163,167,170);*/
+    background-color: rgb(244,244,244);
 }
 
-.graph-card-container {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
+.graph-section {
+    display: flex;
+/*    flex-direction: row;*/
+    height: 100%;
+}
+
+.graph-card {
+    background-color: white;
+    flex-grow: 1;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /*border: 1px solid rgb(0,57,112);*/
 }
 
 .graph-card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.info-card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-left: 30px;
+    min-width: 300px;
+    max-width: 300px;
+    height: 320px;
+    color: rgb(0,57,112);
+    background-color: white;
+    /*border: 1px solid rgb(0,57,112);*/
+}
+
+.info-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.tooltip {
+    margin: 15px;
+    font-family: 'Lato', sans-serif;
+}
+
+.info-section {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    margin-top: 30px;
+}
+
+#first-ic {
+    margin-left: 0px;
+}
+
 .page-footer {
-    background: #9984D4;
+    background: rgb(0,57,112);
 }
