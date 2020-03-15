@@ -57,7 +57,7 @@
 
 .main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100%;
     /*background-color: rgb(163,167,170);*/
     background-color: rgb(244,244,244);
@@ -65,13 +65,14 @@
 
 .graph-section {
     display: flex;
-/*    flex-direction: row;*/
+    flex-direction: column;
     height: 100%;
 }
 
 .graph-card {
     background-color: white;
-    flex-grow: 1;
+    height: 320px;
+    /*flex-grow: 1;*/
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     /*border: 1px solid rgb(0,57,112);*/
 }
@@ -80,9 +81,15 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.graph-info-section {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
 .info-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin-left: 30px;
+    /*margin-left: 30px;*/
     min-width: 300px;
     max-width: 300px;
     height: 320px;
@@ -95,16 +102,15 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.tooltip-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .tooltip {
     margin: 15px;
     font-family: 'Lato', sans-serif;
-}
-
-.info-section {
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    margin-top: 30px;
 }
 
 #first-ic {
