@@ -8,10 +8,13 @@ var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
     
 // Adds the svg canvas
-var svg = d3.select(".graph-card")
+var svg = d3.select("div#chartId")
+    .append("div")
+    .classed("svg-container", true) 
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("preserveAspectRatio", "none")
+    .attr("viewBox", "0 0 900 300")
+    .classed("svg-content-responsive", true)
     .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
