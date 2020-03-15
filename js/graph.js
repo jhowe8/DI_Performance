@@ -25,7 +25,7 @@ d3.json("data/data2.json").then(function(data) {
     });
 
     var format = d3.timeFormat("%B %d %Y %I:%M:%S %p");
-    var tooltipdiv = d3.select("#tooltip-card").append("div") 
+    var tooltipdiv = d3.select("#tooltip-section").append("div") 
                         .attr("class", "tooltip")       
                         .style("opacity", 1);
 
