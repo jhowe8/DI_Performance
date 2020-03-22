@@ -69,7 +69,7 @@
     justify-content: space-between;
     height: 100%;
     min-width: 1125px;
-    min-height: 300px;
+    height: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: white;
 }
@@ -79,8 +79,8 @@
 }
 
 #chartId {
-    padding: 15px;
-    width: 100vw;
+    padding: 25px 0px 25px 25px;
+    width: 70vw;
     min-width: 875px;
     max-height: 300px;
 }

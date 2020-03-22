@@ -13,11 +13,20 @@ var svg = d3.select("div#chartId")
     .classed("svg-container", true) 
     .append("svg")
     .attr("preserveAspectRatio", "none")
-    .attr("viewBox", "0 0 900 300")
+    .attr("viewBox", "0 0 900 350")
     .classed("svg-content-responsive", true)
     .append("g")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
+
+function prettySize(bytes, separator = '', postFix = '') {
+    if (bytes) {
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.min(parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10), sizes.length - 1);
+        return `${(bytes / (1024 ** i)).toFixed(i ? 1 : 0)}${separator}${sizes[i]}${postFix}`;
+    }
+    return 'n/a';
+}
 
 // Get the data
 d3.json("data/data2.json").then(function(data) {
@@ -25,6 +34,7 @@ d3.json("data/data2.json").then(function(data) {
     data.forEach(function(d) {
         d.date = new Date(d.date);
         d.duration = +d.duration;
+        d.size = prettySize(d.size);
     });
 
     var format = d3.timeFormat("%B %d %Y %I:%M:%S %p");
@@ -47,7 +57,8 @@ d3.json("data/data2.json").then(function(data) {
         .attr("stroke", "rgb(0,57,112)")
         .on("mouseover", function(d) {
             tooltipdiv
-                .html('<b>Date:</b> ' + format(d.date) + '<br><br><b>Duration:</b> ' + d.duration + ' seconds')
+                .html('<b>Date:</b> ' + format(d.date) + '<br><br><b>Duration:</b> ' + d.duration + ' seconds' +
+                    '<br><br><b>Size:</b> ' + d.size)
                 .style('opacity', .9);
             d3.select(this)
                 .attr("fill", "rgb(111,212,77)");
