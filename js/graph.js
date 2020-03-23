@@ -28,15 +28,21 @@ function prettySize(bytes, separator = '', postFix = '') {
     return 'n/a';
 }
 
+var sizes = [];
+var durations = [];
+var f = d3.format(".3f");
+
 // Get the data
 d3.json("data/data2.json").then(function(data) {
-    console.log(data)
     data.forEach(function(d) {
         d.date = new Date(d.date);
-        d.duration = +d.duration;
+        durations.push(d.duration);
+        d.duration = f(+d.duration);
+        sizes.push(d.size);
         d.size = prettySize(d.size);
     });
 
+    console.log(sizes);
     var format = d3.timeFormat("%B %d %Y %I:%M:%S %p");
     var tooltipdiv = d3.select("#tooltip-section").append("div") 
                         .attr("class", "tooltip")       
@@ -108,4 +114,22 @@ d3.json("data/data2.json").then(function(data) {
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("DURATION (SECONDS)"); 
+
+    var meanCardTopNumber = document.getElementById("mean-averages-top-number");
+    meanCardTopNumber.innerHTML = prettySize(d3.mean(sizes));
+    var meanCardTopSentence = document.getElementById("mean-averages-top-sentence");
+    meanCardTopSentence.innerHTML = "Average (mean) size of file";
+    var meanCardBottomNumber = document.getElementById("mean-averages-bottom-number");
+    meanCardBottomNumber.innerHTML = f(d3.mean(durations)) + "s";
+    var meanCardBottomSentence = document.getElementById("mean-averages-bottom-sentence");
+    meanCardBottomSentence.innerHTML = "Average (mean) time to upload file";
+
+    var medianCardTopNumber = document.getElementById("median-averages-top-number");
+    medianCardTopNumber.innerHTML = prettySize(d3.median(sizes));
+    var medianCardTopSentence = document.getElementById("median-averages-top-sentence");
+    medianCardTopSentence.innerHTML = "Average (median) size of file";
+    var medianCardBottomNumber = document.getElementById("median-averages-bottom-number");
+    medianCardBottomNumber.innerHTML = f(d3.median(durations)) + "s";
+    var medianCardBottomSentence = document.getElementById("median-averages-bottom-sentence");
+    medianCardBottomSentence.innerHTML = "Average (median) time to upload file";
 });

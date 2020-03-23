@@ -3,6 +3,7 @@
 <head>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://d3js.org/d3-format.v1.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -25,8 +26,26 @@
 				</div>
 			</div>
 			<div class="info-section">
-				<div class="info-card"></div>
-				<div class="info-card"></div>
+				<div class="info-card">
+					<div class="info-card-top">
+						<div id="mean-averages-top-number" class="info-card-number"></div>
+						<div id="mean-averages-top-sentence" class="info-card-sentence"></div>
+					</div>
+					<div class="info-card-bottom">
+						<div id="mean-averages-bottom-number" class="info-card-number"></div>
+						<div id="mean-averages-bottom-sentence" class="info-card-sentence"></div>
+					</div>
+				</div>
+				<div class="info-card">
+					<div class="info-card-top">
+						<div id="median-averages-top-number" class="info-card-number"></div>
+						<div id="median-averages-top-sentence" class="info-card-sentence"></div>
+					</div>
+					<div class="info-card-bottom">
+						<div id="median-averages-bottom-number" class="info-card-number"></div>
+						<div id="median-averages-bottom-sentence" class="info-card-sentence"></div>
+					</div>
+				</div>
 				<div class="info-card"></div>
 				<div class="info-card"></div>
 			</div>
