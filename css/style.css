@@ -99,14 +99,21 @@
 }
 
 #tooltip-section {
+    font-family: 'Lato', sans-serif;
     width: 20vw;
     min-width: 250px;
-    border-left: 1px solid black;
+}
+
+#tooltip-word {
+    font-size: 25px;
+    line-height: 60px;
+    height: 40px;
+    text-align: center;
+    margin: 0px 20px 0px 20px;
 }
 
 .tooltip {
     margin: 25px;
-    font-family: 'Lato', sans-serif;
 }
 
 .info-section {
